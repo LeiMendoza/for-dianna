@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff9eb7">
+<title>For Dianna, My Love 💗</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;
+  font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff1f5,#ffe0e9);
+  overflow:hidden
+}
+.container{text-align:center}
+.sticker{
+  width:min(92vw,360px);aspect-ratio:1/1;
+  background:linear-gradient(145deg,#ffc4d3,#ff9eb7);
+  border:8px solid white;border-radius:38px;box-shadow:0 14px 35px #0002;
+  cursor:pointer;position:relative;transition:.25s;animation:float 2.5s ease-in-out infinite;
+  user-select:none;-webkit-tap-highlight-color:transparent
+}
+.sticker:active{transform:scale(.96)}
+.heart{font-size:52px;margin-top:18px}
+.envelope{
+  width:74%;height:42%;background:#fff7e8;margin:0 auto;
+  border:5px solid #6b3027;border-radius:12px;position:relative;overflow:hidden
+}
+.envelope:before{
+  content:"";position:absolute;top:-70px;left:9%;width:80%;height:130px;
+  background:#ffd1dc;border:5px solid #6b3027;transform:rotate(45deg)
+}
+.letter-text{
+  position:relative;z-index:2;margin-top:35px;font-size:clamp(20px,6vw,28px);
+  font-weight:bold;color:#5a2924
+}
+.tap{margin-top:10px;font-size:clamp(19px,5.5vw,24px);font-weight:bold;color:#5a2924}
+.small{font-size:13px;color:#8b4c55;margin-top:7px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+.overlay{
+  position:fixed;inset:0;background:#3c141eaa;display:none;justify-content:center;
+  align-items:center;padding:18px;z-index:100
+}
+.overlay.show{display:flex}
+.letter{
+  width:100%;max-width:520px;max-height:88vh;overflow-y:auto;background:#fffaf2;
+  border-radius:24px;padding:30px 25px 25px;box-shadow:0 18px 45px #0005;
+  animation:openLetter .4s ease;position:relative
+}
+@keyframes openLetter{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
+.letter h1{color:#d94f70;margin:0 35px 18px 0;font-size:28px}
+.letter p{font-size:17px;line-height:1.7;color:#4b3030;text-align:left;margin-bottom:0}
+.close{
+  position:absolute;top:12px;right:14px;border:0;background:#ffb6c7;color:#5a2924;
+  width:36px;height:36px;border-radius:50%;font-size:21px;cursor:pointer
+}
+.floating-heart{position:fixed;font-size:25px;pointer-events:none;animation:rise 2s ease-out forwards}
+@keyframes rise{from{transform:translateY(0) scale(1);opacity:1}to{transform:translateY(-260px) scale(1.5);opacity:0}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="sticker" onclick="openLetter()" role="button" aria-label="Open letter">
+    <div class="heart">❤️</div>
+    <div class="envelope">
+      <div class="letter-text">Open Me,<br>Dianna My Love 💗</div>
+    </div>
+    <div class="tap">👆 Tap Me 💕</div>
+    <div class="small">I have something to tell you...</div>
+  </div>
+</div>
+
+<div class="overlay" id="letterBox">
+  <div class="letter">
+    <button class="close" onclick="closeLetter()" aria-label="Close">×</button>
+    <h1>💌 For Dianna, My Love</h1>
+    <p>
+      Dianna, my love, gusto kong humingi ng sorry sa lahat ng nagawa at nasabi ko na nakasakit sa’yo.
+      Sorry kung may mga oras na hindi kita naiintindihan, kung nagagalit ako, o kung may mga ginagawa ako
+      na nakakapagpasama ng loob mo. Hindi ko naman gustong masaktan ka, pero alam kong may mga pagkakamali
+      ako at pinagsisisihan ko talaga iyon. Gusto ko lang malaman mo na mahal na mahal kita at ayokong mawala
+      ka sa buhay ko. Ikaw ang nag-iisa kong baby at sobrang importante mo sa akin. Sana mapatawad mo ako at
+      bigyan mo pa ako ng chance na ayusin ang mga pagkakamali ko at ipakita sa’yo na mahalaga ka sa akin.
+      Sorry talaga, Dianna. Mahal na mahal kita. ❤️
+    </p>
+  </div>
+</div>
+
+<script>
+function openLetter(){
+  document.getElementById("letterBox").classList.add("show");
+  for(let i=0;i<18;i++){
+    const heart=document.createElement("div");
+    heart.className="floating-heart";
+    heart.textContent=["❤️","💕","💗","💖"][Math.floor(Math.random()*4)];
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top=(75+Math.random()*15)+"vh";
+    heart.style.animationDelay=Math.random()*.45+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),2500);
+  }
+}
+function closeLetter(){document.getElementById("letterBox").classList.remove("show")}
+document.getElementById("letterBox").addEventListener("click",e=>{
+  if(e.target===e.currentTarget) closeLetter();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLetter()});
+</script>
+</body>
+</html>
